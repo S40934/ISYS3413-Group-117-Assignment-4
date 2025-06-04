@@ -161,12 +161,27 @@ public class Person{
         return valid;
     }
 
-    public boolean updatePersonalDetails(){
-
-
-
-        return true;
+    public int writeToFile(String filename){
+        // separate file writing portion for PersonalDetailsEditor.updatePersonalDetails() method
+        int code = 0;
+        try {
+            FileWriter writer = new FileWriter(filename, true);
+            writer.write("*--------------------------*\n");
+            writer.write("PersonID: " + personID + "\n");
+            writer.write("PersonName: " + firstName + " " + lastName + "\n");
+            writer.write("Address: " + address + "\n");
+            writer.write("Date of Birth: " + birthdate + "\n");
+            writer.write("///--------/////--------///\n");
+            writer.close();
+        } catch (IOException e) {
+            code = 1;
+            System.out.println("An error occurred while writing to the file: " + e.getMessage());
+        }
+        return code;
     }
+    // public boolean updatePersonalDetails(){
+    //     return true;
+    // }
 
     public String addDemeritPoints(){
 
