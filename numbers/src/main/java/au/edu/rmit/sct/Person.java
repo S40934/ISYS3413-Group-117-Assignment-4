@@ -113,7 +113,6 @@ public class Person{
 
                 // check if only numbers
                 if (!variant.matches("\\d+")) {
-                    System.out.println("Invalid date part: " + variant);
                     return false;
                 }
 
@@ -125,6 +124,13 @@ public class Person{
                 Bcount--;
             }
         }
+        variant = birthdate.substring(Bliner);
+        if (!variant.matches("\\d+")) {
+            System.out.println("Invalid year part: " + variant);
+            return false;
+        }
+        year = Integer.parseInt(variant);
+        Bcount--;
         return true;
     }
 
