@@ -144,7 +144,14 @@ public class Person{
             System.out.println("Invalid day: " + day);
             return false;
         }
-        
+        FileWriter writer = new FileWriter("AddPerson.txt", true);
+            writer.write("*--------------------------*\n");
+            writer.write("PersonID: " + personID + "\n");
+            writer.write("PersonName: " + firstName + " " + lastName + "\n");
+            writer.write("Address: " + address + "\n");
+            writer.write("Date of Birth: " + birthdate + "\n");
+            writer.write("///--------/////--------///\n");
+            writer.close();
         return true;
     }
 
