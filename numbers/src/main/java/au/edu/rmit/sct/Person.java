@@ -131,6 +131,13 @@ public class Person{
         }
         year = Integer.parseInt(variant);
         Bcount--;
+
+        if (Bcount != 0) {
+            System.out.println("Invalid birthdate format.");
+            return false;
+        }
+
+        
         return true;
     }
 
