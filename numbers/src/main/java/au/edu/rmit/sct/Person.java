@@ -144,7 +144,8 @@ public class Person{
             System.out.println("Invalid day: " + day);
             return false;
         }
-        FileWriter writer = new FileWriter("AddPerson.txt", true);
+        try {
+            FileWriter writer = new FileWriter("AddPerson.txt", true);
             writer.write("*--------------------------*\n");
             writer.write("PersonID: " + personID + "\n");
             writer.write("PersonName: " + firstName + " " + lastName + "\n");
@@ -152,6 +153,9 @@ public class Person{
             writer.write("Date of Birth: " + birthdate + "\n");
             writer.write("///--------/////--------///\n");
             writer.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred while writing to the file: " + e.getMessage());
+        }
         return true;
     }
 
