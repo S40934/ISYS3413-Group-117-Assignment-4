@@ -99,7 +99,13 @@ public class Person{
             valid = false;
             System.out.println("Please make sure, it is in Australia");
         }
-
+        //Condition 3
+        int day = 0, 
+        int month = 0;
+        int year = 0;
+        int Bcount = 3;
+        int Bliner = 0;
+        variant = "";
 
         return true;
     }
