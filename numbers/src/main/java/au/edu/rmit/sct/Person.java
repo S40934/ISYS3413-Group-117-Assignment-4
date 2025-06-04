@@ -106,7 +106,25 @@ public class Person{
         int Bcount = 3;
         int Bliner = 0;
         variant = "";
+        for (int i = 0; i < birthdate.length(); i++) {
+            if (birthdate.charAt(i) == '-') {
+                variant = birthdate.substring(Bliner, i);
+                Bliner = i + 1;
 
+                // check if only numbers
+                if (!variant.matches("\\d+")) {
+                    System.out.println("Invalid date part: " + variant);
+                    return false;
+                }
+
+                if (Bcount == 3) {
+                    day = Integer.parseInt(variant);
+                } else if (Bcount == 2) {
+                    month = Integer.parseInt(variant);
+                }
+                Bcount--;
+            }
+        }
         return true;
     }
 
