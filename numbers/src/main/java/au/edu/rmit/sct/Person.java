@@ -161,6 +161,7 @@ public class Person{
         return valid;
     }
 
+    //update personal details helper methods
     public int writeToFile(String filename){
         // separate file writing portion for PersonalDetailsEditor.updatePersonalDetails() method
         int code = 0;
@@ -178,6 +179,12 @@ public class Person{
             System.out.println("An error occurred while writing to the file: " + e.getMessage());
         }
         return code;
+    }
+    public String getBirthdate(){
+        return birthdate;
+    }
+    public void setBirthdate(String birthdate){
+        this.birthdate = birthdate;
     }
     // public boolean updatePersonalDetails(){
     //     return true;
