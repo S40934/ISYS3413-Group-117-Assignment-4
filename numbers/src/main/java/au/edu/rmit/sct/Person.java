@@ -54,6 +54,52 @@ public class Person{
                 }
         }
 
+        //Condidtion 2 
+        String number ="";
+        String street = "";
+        String city ="";
+        String state ="";
+        String country="";
+        String variant="";
+        int count = 4;
+        int liner = 0;
+        for(int i = 0; i < address.length() ;i++){
+            if(address.charAt(i)=='|'){
+                
+                variant = address.substring(liner , i);
+                liner = i+1;
+                if(count == 4){
+                    number = variant;
+                }else if (count == 3){
+                    street = variant;
+
+                }else if(count == 2){
+                    city = variant;
+                                        
+
+                }else if (count == 1){
+                    state = variant;
+                    
+                }
+                count--;
+
+            }
+        }
+        variant = address.substring(liner);
+        country = variant;
+        
+        if(count !=0){
+            return false;
+        }
+        if(!state.equals("Victoria")){
+            valid = false;
+            System.out.println("Please make sure, it is in Victoria");
+        }
+        if(!country.equals("Australia")){
+            valid = false;
+            System.out.println("Please make sure, it is in Australia");
+        }
+
 
         return true;
     }
