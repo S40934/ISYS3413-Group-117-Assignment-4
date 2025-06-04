@@ -136,6 +136,10 @@ public class Person{
             System.out.println("Invalid birthdate format.");
             return false;
         }
+        if (month < 1 || month > 12) {
+            System.out.println("Invalid month: " + month);
+            return false;
+        }
 
         
         return true;
