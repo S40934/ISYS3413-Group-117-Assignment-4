@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Date;
 
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Person{
 
@@ -156,7 +158,7 @@ public class Person{
         } catch (IOException e) {
             System.out.println("An error occurred while writing to the file: " + e.getMessage());
         }
-        return true;
+        return valid;
     }
 
     public boolean updatePersonalDetails(){
