@@ -15,7 +15,7 @@ public class Person{
     private HashMap<Date, Integer> demeritPoints; //
     private boolean isSuspended;
 
-     public Person(String personID, String firstName, String lastName, String address, String birthdate) {
+    public Person(String personID, String firstName, String lastName, String address, String birthdate) {
             this.personID = personID;
             this.firstName = firstName;
             this.lastName = lastName;
@@ -26,8 +26,33 @@ public class Person{
         }
 
     public boolean addPerson(){
-
-
+        int idLimit = 10;
+        int specCount = 0;
+        
+        boolean valid = false;
+        //Condition 1 complete;
+        if (personID.length() != idLimit){
+            return false;
+        }else{
+            if(!Character.isDigit(personID.charAt(0)) || !Character.isDigit(personID.charAt(1))){
+                return false;
+            }
+            if (!Character.isUpperCase(personID.charAt(8)) || !Character.isUpperCase(personID.charAt(9))) {
+                return false;
+            }
+            for(int i = 2; i < personID.length(); i++){
+                if(!Character.isDigit(personID.charAt(i)) && !Character.isLetter(personID.charAt(i))){
+                    specCount++;
+                }
+                
+            }
+            if(specCount >= 2){
+                    valid = true;
+                }else{
+                    System.out.println("Invalid ID");
+                    return false;
+                }
+        }
 
 
         return true;
