@@ -140,7 +140,10 @@ public class Person{
             System.out.println("Invalid month: " + month);
             return false;
         }
-
+         if (day < 1 || day > 31) {
+            System.out.println("Invalid day: " + day);
+            return false;
+        }
         
         return true;
     }
