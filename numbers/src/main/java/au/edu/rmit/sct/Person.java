@@ -14,7 +14,7 @@ public class Person{
     private String lastName;
     private String address;
     private String birthdate;
-    private HashMap<Date, Integer> demeritPoints; //
+    private HashMap<String, Integer> demeritPoints; //
     private boolean isSuspended;
 
     public Person(String personID, String firstName, String lastName, String address, String birthdate) {
@@ -26,6 +26,17 @@ public class Person{
             this.demeritPoints = new HashMap<>();
             this.isSuspended = false;
         }
+    
+    public Demerit(String personID, String firstName, String lastName, String birthDate, String date, int demerit){
+        this.personID = personID;    
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthdate = birthDate;
+
+        this.demeritPoints = new HashMap<>();
+        this.demeritPoints.put(date, demerit);
+        this.isSuspended = false;
+    }
 
     public boolean addPerson(){
         int idLimit = 10;
@@ -191,6 +202,53 @@ public class Person{
     // }
 
     public String addDemeritPoints(){
+
+        FileWriter fileWriter = new FileWriter("addDemeritPoints.txt"); // creates a file for the demerit points.
+
+        //Gets date and demerit points from the hashmap
+        String date = this.demeritPoints.getKey();
+        int demerit = this.demeritPoints.getValue();
+
+        //codition 1 -checking if offence date is valid
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate birthDate = LocalDate.parse(this.birthdate, formatter);
+        LocalDate today = LocalDate.now();
+
+        //To get the person's age
+        int age = Period.between(this.birthdate, today).getYears();
+
+        //need to read file to check if person had already lost some demerit points
+        FileReader fileReader = new FileReader("addDemeritPoints.txt");
+        String line;
+        while ((line = fileReader.readLine()) != null){
+            if(line.equals(this.personID)){
+                //
+            }
+
+        }
+
+        // Make sure demerit points are whole numbers and between 1 -6 - Condition 2.
+        if ((demerit % 1 == 0) && (demerit > 0) && (demerit <= 6)){
+            if ((age < 21) && (demerit> 6)) { //Condition 3 
+                this.isSuspended = true;
+            }
+            if ((age > 21) && (demerit > 12)){ 
+                    this.isSuspended = true;
+                }
+            
+            fileWriter.write("\nName: ");
+            fileWriter.write("\nDate of Birth: " );
+            fileWriter.write("\nDate of Offence: ");
+            fileWriter.write("\nDemerits: ");
+            fileWriter.write("\nSuspended: True");
+            fileWriter.close();
+
+            return "Sucess";
+        }
+        else{
+            System.out.println("Invalid input. Demerit Points must be a whole number");
+            return "failed";
+        }
 
     }
 
