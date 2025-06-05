@@ -113,7 +113,7 @@ public class Person{
             System.out.println("Please make sure, it is in Australia");
         }
         //Condition 3
-        int day = 0, 
+        int day = 0; 
         int month = 0;
         int year = 0;
         int Bcount = 3;
@@ -191,8 +191,32 @@ public class Person{
         }
         return code;
     }
+    public String getPersonID(){
+        return personID;
+    }
+    public String getFirstName(){
+        return firstName;
+    }
+    public String getLastName(){
+        return lastName;
+    }
+    public String getAddress(){
+        return address;
+    }
     public String getBirthdate(){
         return birthdate;
+    }
+    public void setPersonID(String personID){
+        this.personID = personID;
+    }
+    public void setFirstName(String firstName){
+        this.firstName = firstName;
+    }
+    public void setLastName(String lastName){
+        this.lastName = lastName;
+    }
+    public void setAddress(String address){
+        this.address = address;
     }
     public void setBirthdate(String birthdate){
         this.birthdate = birthdate;
@@ -249,7 +273,6 @@ public class Person{
             System.out.println("Invalid input. Demerit Points must be a whole number");
             return "failed";
         }
-
     }
 
 
