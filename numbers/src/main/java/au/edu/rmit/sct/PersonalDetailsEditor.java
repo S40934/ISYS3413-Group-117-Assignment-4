@@ -41,16 +41,16 @@ public class PersonalDetailsEditor {
         //TODO CONDITION 3: if 1st char of ID is even, ID cannot be canged
             // check first char of ID, if even, skip ID change
             // return new number to indicate status
-        this.person.setPersonID(personID);
         this.person.setFirstName(firstName);
         this.person.setLastName(lastName);
         this.person.setAddress(address);
-            
+        
         if (Integer.parseInt(String.valueOf(this.person.getPersonID().charAt(0))) % 2 == 0){ // checking if first char is even integer
             this.person.writeToFile(filename);
             return 3; // code 3 return indicates condition 3 failed
         }
-         // change ID if not even first char
+        this.person.setPersonID(personID);
+            // change ID if not even first char
 
         this.person.writeToFile(filename);
         return success;
