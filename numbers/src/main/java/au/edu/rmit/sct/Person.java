@@ -273,10 +273,10 @@ public class Person{
 
         // Make sure demerit points are whole numbers and between 1 -6 - Condition 2.
         if ((demeritSum % 1 == 0) && (demeritSum >= 1.0f) && (demeritSum <= 6.0f)){
-            if ((age < 21) && (demeritSum> 6)) { //Condition 3 
+            if ((age < 21) && (demeritSum> 6.0f)) { //Condition 3 
                 this.isSuspended = true;
             }
-            if ((age > 21) && (demeritSum > 12.0)){ 
+            if ((age > 21) && (demeritSum > 12.0f)){ 
                     this.isSuspended = true;
                 }
             
