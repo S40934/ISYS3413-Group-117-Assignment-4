@@ -27,7 +27,7 @@ public class Person{
             this.isSuspended = false;
         }
     
-    public Demerit(String personID, String firstName, String lastName, String birthDate, String date, int demerit){
+    public Person(String personID, String firstName, String lastName, String birthDate, String date, int demerit){
         this.personID = personID;    
         this.firstName = firstName;
         this.lastName = lastName;
@@ -245,7 +245,7 @@ public class Person{
         int age = Period.between(birthDate, today).getYears();
 
         //need to read file to check if person had already lost some demerit points
-        BufferedReader fileReader = new BufferedReader(new FileReader ("addDemeritPoints.txt"));
+        BufferedReader fileReader = new BufferedReader(new FileReader ("AddDemeritPoints.txt"));
         String line;
         int existingDemerits = 0;
         while ((line = fileReader.readLine()) != null){
@@ -274,7 +274,7 @@ public class Person{
             
             //writes into addDemeritPoints.txt
             try {
-            FileWriter fileWriter = new FileWriter("addDemeritPoints.txt", true);
+            FileWriter fileWriter = new FileWriter("AddDemeritPoints.txt", true);
             fileWriter.write("PersonID: " + personID);
             fileWriter.write("\nName: " + firstName + " " + lastName);
             fileWriter.write("\nDate of Birth: " + birthdate);
