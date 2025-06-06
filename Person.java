@@ -49,20 +49,12 @@ public class Person{
 
         }
         else{
-    
             System.out.println("Invalid input. Demerit Points must be a whole number");
             scanner.close();
-        }
-        return "fail";
-    }
 
-     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Person person = new Person("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990");
-        person.addPerson();
-        PersonalDetailsEditor editor = new PersonalDetailsEditor("AddPerson.txt");
-        // editor.readPersonFile("AddPerson.txt");
-        // editor.updatePersonalDetails("");
-        // person.addDemeritPoints();
+        }
+
+
+        return "fail";
     }
 }
