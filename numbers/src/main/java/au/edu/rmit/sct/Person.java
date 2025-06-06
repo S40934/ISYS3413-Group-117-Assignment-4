@@ -1,12 +1,14 @@
 package au.edu.rmit.sct;
 
 import java.util.HashMap;
-
+import java.util.Map;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.Period;
 
-import java.util.Scanner;
+// import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -248,21 +250,24 @@ public class Person{
         int age = Period.between(birthDate, today).getYears();
 
         //need to read file to check if person had already lost some demerit points
-        BufferedReader fileReader = new BufferedReader(new FileReader ("AddDemeritPoints.txt"));
         String line;
         int existingDemerits = 0;
-        while ((line = fileReader.readLine()) != null){
-            if(line.contains("PersonID: " + this.personID)){
-                while ((line = fileReader.readLine()) != null && !line.startsWith("PersonID: ")){
-                    if (line.contains("Demerits: ")){
-                        existingDemerits = Integer.parseInt(line.replaceAll("\\D+",""));
-                        break;
+        try {
+            BufferedReader fileReader = new BufferedReader(new FileReader ("AddDemeritPoints.txt"));
+            while ((line = fileReader.readLine()) != null){
+                if(line.contains("PersonID: " + this.personID)){
+                    while ((line = fileReader.readLine()) != null && !line.startsWith("PersonID: ")){
+                        if (line.contains("Demerits: ")){
+                            existingDemerits = Integer.parseInt(line.replaceAll("\\D+",""));
+                            break;
+                        }
                     }
                 }
+    
+                fileReader.close();
             }
-
+        } catch (Exception e) {
         }
-        fileReader.close();
 
         int demeritSum= existingDemerits + demerit;
 
