@@ -1,4 +1,8 @@
-import java.time
+package au.edu.rmit.sct;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -34,21 +38,19 @@ public class PersonalDetailsEditor {
             return 2; // code 2 return indicates condition 2 failed
         }
         
-        
         //TODO CONDITION 3: if 1st char of ID is even, ID cannot be canged
             // check first char of ID, if even, skip ID change
             // return new number to indicate status
-        this.person.firstName = firstName;
-        this.person.lastName = lastName;
-        this.person.address = address;
-        this.person.birthdate = birthdate;
+        this.person.setFirstName(firstName);
+        this.person.setLastName(lastName);
+        this.person.setAddress(address);
         
-        if (Integer.parseInt(personID.charAt(0)) % 2 == 0){ // checking if first char is even integer
+        if (Integer.parseInt(String.valueOf(this.person.getPersonID().charAt(0))) % 2 == 0){ // checking if first char is even integer
             this.person.writeToFile(filename);
             return 3; // code 3 return indicates condition 3 failed
         }
-        
-        this.person.personID = personID; // change ID if not even first char
+        this.person.setPersonID(personID);
+            // change ID if not even first char
 
         this.person.writeToFile(filename);
         return success;
@@ -57,7 +59,21 @@ public class PersonalDetailsEditor {
     private Person readPersonFile(String filename){
         // TODO implement file reading here
         // create person object based on file contents
-        
+        try {
+            File myObj = new File(filename);
+            Scanner myReader = new Scanner(myObj);
+            myReader.nextLine(); myReader.next(); String personID = myReader.next(); // read personID line
+            myReader.nextLine(); myReader.next(); String firstName = myReader.next(); String lastName = myReader.next(); // read name line
+            myReader.nextLine(); myReader.next(); String address = myReader.next(); // read address line
+            myReader.nextLine(); myReader.next(); myReader.next(); myReader.next();
+            String birthdate = myReader.next(); // read birthdate line
+
+            myReader.close();
+            this.person = new Person(personID, firstName, lastName, address, birthdate);
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+        }
 
         return person;
     }
+}

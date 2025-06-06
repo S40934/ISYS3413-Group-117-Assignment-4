@@ -1,0 +1,41 @@
+package au.edu.rmit.sct;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+
+class TestPerson{
+    @Test
+    void testAddPerson_testCase1(){
+    //TestCase 1: Check funtion with valid Inputs
+        Person testVal1 = new Person("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990");
+        assertTrue(testVal1.addPerson());
+    }
+    @Test
+    void testAddPerson_testCase2(){
+    //TestCase 1: Check funtion with invalid length
+        Person testVal1 = new Person("56s_d%&fA", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990");
+        assertFalse(testVal1.addPerson());
+    }
+    @Test
+    void testAddPerson_testCase3(){
+    //TestCase 1: Check funtion with invalid State
+        Person testVal1 = new Person("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victori|Australia", "15-11-1990");
+        assertFalse(testVal1.addPerson());
+    }
+    @Test
+    void testAddPerson_testCase4(){
+    //TestCase 1: Check funtion with country not aus
+        Person testVal1 = new Person("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|USA", "15-11-1990");
+        assertFalse(testVal1.addPerson());
+    }
+    @Test
+    void testAddPerson_testCase5(){
+    //TestCase 1: Check funtion with birthday 
+    //check if it is format correctly
+        Person testVal1 = new Person("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "32-11-1990");
+        assertFalse(testVal1.addPerson());
+        Person testVal2 = new Person("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "1990-11-31");
+        assertFalse(testVal2.addPerson());
+    }
+}
