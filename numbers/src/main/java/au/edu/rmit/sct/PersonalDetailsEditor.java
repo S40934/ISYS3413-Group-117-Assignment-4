@@ -17,20 +17,36 @@ public class PersonalDetailsEditor {
         this.person = readPersonFile(filename); // the given file is assumed to have no errors as writing is a part of the Person class
     }
 
+    public void setFilename(String filename){
+        this.filename = filename;
+    }
+
     public boolean updatePersonalDetails(String personID, String firstName, String lastName, String address, String birthdate){
         boolean success = true; boolean failed = false;
         
         // CONDITION 1: address change only on 18+ aged person
             // implement person date parsing and comparison to current date - 18 years using java.time LocalDateˇ
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate birthDate = LocalDate.parse(birthdate, formatter);
+        LocalDate birthDateToComp = LocalDate.parse(this.person.getBirthdate(), formatter);
         LocalDate today = LocalDate.now();
-        int age = Period.between(birthDate, today).getYears();
+        int age = Period.between(birthDateToComp, today).getYears();
+        System.out.println("READING PERSON FILE");
+        System.out.println(filename);
+        System.out.println("THIS PERSON IS");
+        System.out.println(age);
+        System.out.println("YEARS OLD");
+        System.out.println("AND IS");
+        System.out.println(this.person.getFirstName());
+        System.out.println(this.person.getLastName());
+        System.out.println(this.person.getAddress());
+        System.out.println(this.person.getBirthdate());
+
         if (age > 18) {
             this.person.setAddress(address);
+            System.out.println("THIS IS SUPPOSED TO FAIL\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
         }
         else {
-            success = failed;
+            success = false;
             // condition 1 failed
         }
 
@@ -66,16 +82,19 @@ public class PersonalDetailsEditor {
         try {
             File myObj = new File(filename);
             Scanner myReader = new Scanner(myObj);
-            myReader.nextLine(); myReader.next(); String personID = myReader.next(); // read personID line
-            myReader.nextLine(); myReader.next(); String firstName = myReader.next(); String lastName = myReader.next(); // read name line
-            myReader.nextLine(); myReader.next(); String address = myReader.next(); // read address line
-            myReader.nextLine(); myReader.next(); myReader.next(); myReader.next();
-            String birthdate = myReader.next(); // read birthdate line
+            myReader.nextLine();
+            myReader.next(); String personID = myReader.next(); myReader.nextLine(); // read personID line
+            // System.out.println("---------------------------I HAVE READ THE ID------------------");
+            // System.out.println(personID);
+            myReader.next(); String firstName = myReader.next(); String lastName = myReader.next(); // read name line
+            myReader.next(); String address = myReader.nextLine(); address = address.substring(1); // read address line
+            myReader.next(); myReader.next(); myReader.next(); String birthdate = myReader.next(); myReader.nextLine(); // read birthdate line
 
             myReader.close();
             this.person = new Person(personID, firstName, lastName, address, birthdate);
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
+            System.out.println("Wrong filename provided.");
+            System.out.println(filename);
         }
 
         return person;

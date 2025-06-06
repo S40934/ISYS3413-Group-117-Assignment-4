@@ -1,0 +1,45 @@
+package au.edu.rmit.sct;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+
+class TestPersonalDetailsEditor{
+    @Test
+    void testUpdatePersonalDetails_testCase1(){
+    //TestCase 1: Check funtion with underaged person
+        PersonalDetailsEditor testVal.updatePersonalDetails = new PersonalDetailEditor("testUnderagedPerson.txt")
+        testVal.updatePersonalDetails("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990");
+        assertFalse(testVal.addPerson());
+    }
+    @Test
+    void testUpdatePersonalDetails_testCase2(){
+    //TestCase 2: Check funtion with birthday change
+        PersonalDetailsEditor testVal.updatePersonalDetails = new PersonalDetailEditor("testBirthdayPerson.txt")
+        testVal.updatePersonalDetails("56s_d%&fB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990");
+        assertFalse(testVal.addPerson());
+    }
+    @Test
+    void testUpdatePersonalDetails_testCase3(){
+    //TestCase 3: Check funtion with birthday change
+        PersonalDetailsEditor testVal= new PersonalDetailEditor("testFirstEvenPerson.txt")
+        testVal.updatePersonalDetails("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victori|Australia", "15-11-1990");
+        assertFalse(testVal.addPerson());
+    }
+    @Test
+    void testUpdatePersonalDetails_testCase4(){
+    //TestCase 4: Check funtion with invalid person
+        PersonalDetailsEditor testVal= new PersonalDetailEditor("testInvalidPerson.txt")
+        testVal.updatePersonalDetails("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|USA", "15-11-1990");
+        assertFalse(testVal.addPerson());
+    }
+    @Test
+    void testUpdatePersonalDetails_testCase5(){
+    //TestCase 5: Check funtion with invalid detail edits / function parameters
+    //check if it is format correctly
+        PersonalDetailsEditor testVal= new PersonalDetailEditor("testWrongEditsPerson.txt")
+        testVal.updatePersonalDetails("ssssssssss", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "32-11-1990");
+        assertFalse(testVal.addPerson());
+
+    }
+}

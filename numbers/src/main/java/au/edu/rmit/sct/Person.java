@@ -163,7 +163,7 @@ public class Person{
             return false;
         }
         try {
-            FileWriter writer = new FileWriter("AddPerson.txt", true);
+            FileWriter writer = new FileWriter("AddPerson.txt", false);
             writer.write("*--------------------------*\n");
             writer.write("PersonID: " + personID + "\n");
             writer.write("PersonName: " + firstName + " " + lastName + "\n");
@@ -182,7 +182,8 @@ public class Person{
         // separate file writing portion for PersonalDetailsEditor.updatePersonalDetails() method
         int code = 0;
         try {
-            FileWriter writer = new FileWriter(filename, true);
+
+            FileWriter writer = new FileWriter(filename, false);
             writer.write("*--------------------------*\n");
             writer.write("PersonID: " + personID + "\n");
             writer.write("PersonName: " + firstName + " " + lastName + "\n");
