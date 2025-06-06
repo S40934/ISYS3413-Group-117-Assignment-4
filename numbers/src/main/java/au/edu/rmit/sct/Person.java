@@ -240,13 +240,31 @@ public class Person{
         float demerit = entry.getValue();
 
         //codition 1 -checking if offence date is valid
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate offenceDate = LocalDate.parse(date, formatter);
+        DateTimeFormatter incorrectformatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter correctformatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        
+        LocalDate offenceDate  = null;
+
+        try{
+            offenceDate = LocalDate.parse(date, correctformatter);
+        }
+        catch (Exception e1){
+            try{
+                offenceDate = LocalDate.parse(date, incorrectformatter);
+            }
+            catch (Exception e2){
+                System.out.println("Invalid input. Incorrect date format")
+                return "Failed";
+
+            } 
+        
+        }
+
         LocalDate today = LocalDate.now();
 
         //To get the person's age
         //Converts this.birthday which is a string to localDate.
-        LocalDate birthDate = LocalDate.parse(this.birthdate, formatter);
+        LocalDate birthDate = LocalDate.parse(this.birthdate, correctformatter);
         int age = Period.between(birthDate, today).getYears();
 
         //need to read file to check if person had already lost some demerit points
@@ -279,20 +297,20 @@ public class Person{
             if ((age > 21) && (demeritSum > 12.0f)){ 
                     this.isSuspended = true;
                 }
-            
+                
             //writes into addDemeritPoints.txt
             try {
-            FileWriter fileWriter = new FileWriter("AddDemeritPoints.txt", true);
-            fileWriter.write("PersonID: " + personID);
-            fileWriter.write("\nName: " + firstName + " " + lastName);
-            fileWriter.write("\nDate of Birth: " + birthdate);
-            fileWriter.write("\nDate of Offence: " + offenceDate);
-            fileWriter.write("\nDemerits: " + demeritSum);
-            fileWriter.write("\nSuspended: " + (this.isSuspended ? "True" : "False"));
-            fileWriter.close();
+                FileWriter fileWriter = new FileWriter("AddDemeritPoints.txt", true);
+                fileWriter.write("PersonID: " + personID);
+                fileWriter.write("\nName: " + firstName + " " + lastName);
+                fileWriter.write("\nDate of Birth: " + birthdate);
+                fileWriter.write("\nDate of Offence: " + offenceDate);
+                fileWriter.write("\nDemerits: " + demeritSum);
+                fileWriter.write("\nSuspended: " + (this.isSuspended ? "True" : "False"));
+                fileWriter.close();
             }
             catch (IOException e){
-            System.out.println("An error occurred while writing to the file: " + e.getMessage());
+                System.out.println("An error occurred while writing to the file: " + e.getMessage());
             }
 
             return "Success";
