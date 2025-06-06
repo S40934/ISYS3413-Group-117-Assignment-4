@@ -17,8 +17,8 @@ public class PersonalDetailsEditor {
         this.person = readPersonFile(filename); // the given file is assumed to have no errors as writing is a part of the Person class
     }
 
-    public int updatePersonalDetails(String personID, String firstName, String lastName, String address, String birthdate){
-        int success = 0;
+    public boolean updatePersonalDetails(String personID, String firstName, String lastName, String address, String birthdate){
+        boolean success = true; boolean failed = false;
         
         // TODO CONDITION 1: address change only on 18+ aged person
             // implement person date parsing and comparison to current date - 18 years using java.time LocalDateˇ
@@ -27,7 +27,7 @@ public class PersonalDetailsEditor {
         LocalDate today = LocalDate.now();
         int age = Period.between(birthDate, today).getYears();
         if (age < 18) {
-            return 1; // code 1 return indicates condition 1 failed
+            return failed; // condition 1 failed
         }
 
         //TODO CONDITION 2: no other change on birthday change (single detail change)
@@ -35,7 +35,7 @@ public class PersonalDetailsEditor {
         if (!this.person.getBirthdate().equals(birthdate)){
             this.person.setBirthdate(birthdate);
             this.person.writeToFile(filename);
-            return 2; // code 2 return indicates condition 2 failed
+            return failed; // condition 2 failed
         }
         
         //TODO CONDITION 3: if 1st char of ID is even, ID cannot be canged
@@ -47,12 +47,13 @@ public class PersonalDetailsEditor {
         
         if (Integer.parseInt(String.valueOf(this.person.getPersonID().charAt(0))) % 2 == 0){ // checking if first char is even integer
             this.person.writeToFile(filename);
-            return 3; // code 3 return indicates condition 3 failed
+            return failed; // condition 3 failed
         }
         this.person.setPersonID(personID);
             // change ID if not even first char
-
-        this.person.writeToFile(filename);
+        if (this.person.addPerson()){
+            return failed; //  invalid new details
+        }
         return success;
     }
 
