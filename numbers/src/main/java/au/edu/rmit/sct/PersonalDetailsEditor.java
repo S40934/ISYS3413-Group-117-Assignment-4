@@ -20,17 +20,21 @@ public class PersonalDetailsEditor {
     public boolean updatePersonalDetails(String personID, String firstName, String lastName, String address, String birthdate){
         boolean success = true; boolean failed = false;
         
-        // TODO CONDITION 1: address change only on 18+ aged person
+        // CONDITION 1: address change only on 18+ aged person
             // implement person date parsing and comparison to current date - 18 years using java.time LocalDateˇ
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate birthDate = LocalDate.parse(birthdate, formatter);
         LocalDate today = LocalDate.now();
         int age = Period.between(birthDate, today).getYears();
-        if (age < 18) {
-            return failed; // condition 1 failed
+        if (age > 18) {
+            this.person.setAddress(address);
+        }
+        else {
+            success = failed;
+            // condition 1 failed
         }
 
-        //TODO CONDITION 2: no other change on birthday change (single detail change)
+        //CONDITION 2: no other change on birthday change (single detail change)
             // check if different birthday param, write and return early if so
         if (!this.person.getBirthdate().equals(birthdate)){
             this.person.setBirthdate(birthdate);
@@ -38,12 +42,11 @@ public class PersonalDetailsEditor {
             return failed; // condition 2 failed
         }
         
-        //TODO CONDITION 3: if 1st char of ID is even, ID cannot be canged
+        //CONDITION 3: if 1st char of ID is even, ID cannot be canged
             // check first char of ID, if even, skip ID change
             // return new number to indicate status
         this.person.setFirstName(firstName);
         this.person.setLastName(lastName);
-        this.person.setAddress(address);
         
         if (Integer.parseInt(String.valueOf(this.person.getPersonID().charAt(0))) % 2 == 0){ // checking if first char is even integer
             this.person.writeToFile(filename);
@@ -58,7 +61,7 @@ public class PersonalDetailsEditor {
     }
 
     private Person readPersonFile(String filename){
-        // TODO implement file reading here
+        // file reading here
         // create person object based on file contents
         try {
             File myObj = new File(filename);
