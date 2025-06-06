@@ -246,9 +246,9 @@ public class Person{
         LocalDate offenceDate  = null;
 
         try{
-            offenceDate = LocalDate.parse(date, correctformatter);
+            offenceDate = LocalDate.parse(date, correctformatter); // checks if its the right format
         }
-        catch (Exception e1){
+        catch (Exception e1){ // if not checks if it's incorrect
             try{
                 offenceDate = LocalDate.parse(date, incorrectformatter);
             }
@@ -267,7 +267,7 @@ public class Person{
         LocalDate birthDate = LocalDate.parse(this.birthdate, correctformatter);
         int age = Period.between(birthDate, today).getYears();
 
-        //need to read file to check if person had already lost some demerit points
+        //need to read file to check if person had already lost some demerit points/ in demerit file
         String line;
         float existingDemerits = 0.0f;
         try {
@@ -285,13 +285,14 @@ public class Person{
             fileReader.close();
 
         } catch (Exception e) {
+            System.out.println("No records found");
         }
 
         float demeritSum= existingDemerits + demerit;
 
         // Make sure demerit points are whole numbers and between 1 -6 - Condition 2.
         if ((demeritSum % 1 == 0) && (demeritSum >= 1.0f) && (demeritSum <= 6.0f)){
-            if ((age < 21) && (demeritSum> 6.0f)) { //Condition 3 
+            if ((age < 21) && (demeritSum > 6.0f)) { //Condition 3 
                 this.isSuspended = true;
             }
             if ((age > 21) && (demeritSum > 12.0f)){ 
@@ -316,7 +317,7 @@ public class Person{
             return "Success";
         }
         else{
-            System.out.println("Invalid input. Demerit Points must be a whole number");
+            System.out.println("Invalid input. Demerit Points must be a whole number and between 1 and 6.");
             return "Failed";
         }
     }
