@@ -23,7 +23,7 @@ class TestPersonalDetailsEditor{
     void testUpdatePersonalDetails_testCase3(){
         //TestCase 3: Check function with birthday change
         PersonalDetailsEditor testVal= new PersonalDetailsEditor("testFirstEvenPerson.txt");
-        testVal.updatePersonalDetails("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victori|Australia", "15-11-1990");
+        testVal.updatePersonalDetails("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990");
         assertFalse(testVal.updatePersonalDetails("56s_d%&fB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990"));
     }
     @Test
