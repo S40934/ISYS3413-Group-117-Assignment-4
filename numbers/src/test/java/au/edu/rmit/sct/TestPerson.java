@@ -54,7 +54,7 @@ class TestDemerits{
     void testAddDemerit_testCase2(){
     //TestCase 2: Checks if demerit points are whole numbers. 
         Person testCase2 = new Person("123456", "Mary", "Doe", "15-11-1990", "01-06-2005", 3.5f);
-        assertEquals("Success", testCase2.addDemeritPoints());
+        assertEquals("Failed", testCase2.addDemeritPoints());
         
     }
 
@@ -62,7 +62,7 @@ class TestDemerits{
     void testAddDemerit_testCase3(){
     //TestCase 3: Checks if demerit points is between 1 - 6
     Person testCase3 = new Person("123456", "Mary", "Doe", "15-11-1990", "01-06-2025", 7.0f);
-        assertEquals("Success", testCase3.addDemeritPoints());
+        assertEquals("Failed", testCase3.addDemeritPoints());
         
     }
 
