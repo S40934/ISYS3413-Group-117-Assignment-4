@@ -4,38 +4,42 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 
-class TestPersonalDetailEditor{
+class TestPersonalDetailsEditor{
     @Test
     void testUpdatePersonalDetails_testCase1(){
     //TestCase 1: Check funtion with valid Inputs
-        Person testVal1 = new Person("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990");
-        assertTrue(testVal1.addPerson());
+        PersonalDetailsEditor testVal.updatePersonalDetails = new PersonalDetailEditor("testUnderagedPerson.txt")
+        testVal.updatePersonalDetails("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990");
+        assertTrue(testVal.addPerson());
     }
     @Test
     void testUpdatePersonalDetails_testCase2(){
     //TestCase 1: Check funtion with invalid length
-        Person testVal1 = new Person("56s_d%&fA", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990");
-        assertFalse(testVal1.addPerson());
+        PersonalDetailsEditor testVal.updatePersonalDetails = new PersonalDetailEditor("testBirthdayPerson.txt")
+        testVal.updatePersonalDetails("56s_d%&fA", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990");
+        assertFalse(testVal.addPerson());
     }
     @Test
     void testUpdatePersonalDetails_testCase3(){
     //TestCase 1: Check funtion with invalid State
-        Person testVal1 = new Person("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victori|Australia", "15-11-1990");
-        assertFalse(testVal1.addPerson());
+        PersonalDetailsEditor testVal= new PersonalDetailEditor("testFirstEvenPerson.txt")
+        testVal.updatePersonalDetails("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victori|Australia", "15-11-1990");
+        assertFalse(testVal.addPerson());
     }
     @Test
     void testUpdatePersonalDetails_testCase4(){
     //TestCase 1: Check funtion with country not aus
-        Person testVal1 = new Person("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|USA", "15-11-1990");
-        assertFalse(testVal1.addPerson());
+        PersonalDetailsEditor testVal= new PersonalDetailEditor("testInvalidPerson.txt")
+        testVal.updatePersonalDetails("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|USA", "15-11-1990");
+        assertFalse(testVal.addPerson());
     }
     @Test
     void testUpdatePersonalDetails_testCase5(){
     //TestCase 1: Check funtion with birthday 
     //check if it is format correctly
-        Person testVal1 = new Person("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "32-11-1990");
-        assertFalse(testVal1.addPerson());
-        Person testVal2 = new Person("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "1990-11-31");
-        assertFalse(testVal2.addPerson());
+        PersonalDetailsEditor testVal= new PersonalDetailEditor("testWrongEditsPerson.txt")
+        testVal.updatePersonalDetails("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "32-11-1990");
+        assertFalse(testVal.addPerson());
+
     }
 }
