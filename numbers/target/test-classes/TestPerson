@@ -45,7 +45,7 @@ class TestDemerits{
     @Test
     void testAddDemerit_testCase1(){
     //TestCase 1: Checks if offence date is in correct format.
-        Person testCase1 = new Person("56s_d%&fAB", "John", "Doe", "15-11-1990", "2025-06-01", 3);
+        Person testCase1 = new Person("56s_d%&fAB", "John", "Doe", "15-11-1990", "2025-06-01", 3.0);
         assertEquals("Success",testCase1.addDemeritPoints()); // Expected outcome
     }
 
@@ -61,7 +61,7 @@ class TestDemerits{
     @Test
     void testAddDemerit_testCase3(){
     //TestCase 3: Checks if demerit points is between 1 - 6
-    Person testCase3 = new Person("56s_d%&fAB", "John", "Doe", "15-11-1990", "01-06-2025", 7);
+    Person testCase3 = new Person("56s_d%&fAB", "John", "Doe", "15-11-1990", "01-06-2025", 7.0);
         assertEquals("Success", testCase3.addDemeritPoints());
         
     }
@@ -71,14 +71,14 @@ class TestDemerits{
     @Test
     void testAddDemerit_testCase4(){
     //TestCase 4: Checks if over demerit points for under 21.
-        Person testCase4 = new Person("56s_d%&fAB", "John", "Doe", "15-11-2005", "25-04-2024", 5);
+        Person testCase4 = new Person("56s_d%&fAB", "John", "Doe", "15-11-2005", "25-04-2024", 5.0);
         assertEquals("Success", testCase4.addDemeritPoints());
     }
 
     @Test
     void testAddDemerit_testCase5(){
     //TestCase 5: Checks if over demerit points for under 21 within 2 years.
-        Person testCase5 = new Person("56s_d%&fAB", "John", "Doe", "15-11-2005", "01-06-2025", 3);
+        Person testCase5 = new Person("56s_d%&fAB", "John", "Doe", "15-11-2005", "01-06-2025", 3.0);
         assertEquals("Success", testCase5.addDemeritPoints());
     }
 

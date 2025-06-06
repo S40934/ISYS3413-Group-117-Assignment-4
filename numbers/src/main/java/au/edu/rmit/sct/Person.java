@@ -19,7 +19,7 @@ public class Person{
     private String lastName;
     private String address;
     private String birthdate;
-    private HashMap<String, Integer> demeritPoints; 
+    private HashMap<String, Float> demeritPoints; 
     private boolean isSuspended;
 
     public Person(String personID, String firstName, String lastName, String address, String birthdate) {
@@ -32,7 +32,7 @@ public class Person{
             this.isSuspended = false;
         }
     
-    public Person(String personID, String firstName, String lastName, String birthDate, String date, int demerit){
+    public Person(String personID, String firstName, String lastName, String birthDate, String date, Float demerit){
         this.personID = personID;    
         this.firstName = firstName;
         this.lastName = lastName;
@@ -233,11 +233,11 @@ public class Person{
     public String addDemeritPoints(){
 
         //Gets date and demerit points from the hashmap
-        Map.Entry<String, Integer> entry = this.demeritPoints.entrySet().iterator().next();
+        Map.Entry<String, Float> entry = this.demeritPoints.entrySet().iterator().next();
         String date = entry.getKey();
 
         // String date = this.demeritPoints.getKey();
-        int demerit = entry.getValue();
+        float demerit = entry.getValue();
 
         //codition 1 -checking if offence date is valid
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -251,7 +251,7 @@ public class Person{
 
         //need to read file to check if person had already lost some demerit points
         String line;
-        int existingDemerits = 0;
+        float existingDemerits = 0.0;
         try {
             BufferedReader fileReader = new BufferedReader(new FileReader ("AddDemeritPoints.txt"));
             while ((line = fileReader.readLine()) != null){
@@ -269,14 +269,14 @@ public class Person{
         } catch (Exception e) {
         }
 
-        int demeritSum= existingDemerits + demerit;
+        float demeritSum= existingDemerits + demerit;
 
         // Make sure demerit points are whole numbers and between 1 -6 - Condition 2.
-        if ((demeritSum % 1 == 0) && (demeritSum > 0) && (demeritSum <= 6)){
+        if ((demeritSum % 1 == 0) && (demeritSum > 0.0) && (demeritSum <= 6.0)){
             if ((age < 21) && (demeritSum> 6)) { //Condition 3 
                 this.isSuspended = true;
             }
-            if ((age > 21) && (demeritSum > 12)){ 
+            if ((age > 21) && (demeritSum > 12.0)){ 
                     this.isSuspended = true;
                 }
             
