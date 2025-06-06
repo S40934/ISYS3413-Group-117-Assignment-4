@@ -1,7 +1,10 @@
 package au.edu.rmit.sct;
 
 import java.util.HashMap;
-import java.util.Date;
+
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.time.Period;
 
 import java.util.Scanner;
 import java.io.FileWriter;
