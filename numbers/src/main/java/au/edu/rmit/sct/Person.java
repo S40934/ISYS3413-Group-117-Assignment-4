@@ -251,7 +251,7 @@ public class Person{
 
         //need to read file to check if person had already lost some demerit points
         String line;
-        float existingDemerits = 0.0;
+        float existingDemerits = 0.0f;
         try {
             BufferedReader fileReader = new BufferedReader(new FileReader ("AddDemeritPoints.txt"));
             while ((line = fileReader.readLine()) != null){
@@ -272,7 +272,7 @@ public class Person{
         float demeritSum= existingDemerits + demerit;
 
         // Make sure demerit points are whole numbers and between 1 -6 - Condition 2.
-        if ((demeritSum % 1 == 0) && (demeritSum > 0.0) && (demeritSum <= 6.0)){
+        if ((demeritSum % 1 == 0) && (demeritSum >= 1.0f) && (demeritSum <= 6.0f)){
             if ((age < 21) && (demeritSum> 6)) { //Condition 3 
                 this.isSuspended = true;
             }
