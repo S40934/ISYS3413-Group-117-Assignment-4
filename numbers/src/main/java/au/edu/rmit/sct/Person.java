@@ -253,7 +253,7 @@ public class Person{
                 offenceDate = LocalDate.parse(date, incorrectformatter);
             }
             catch (Exception e2){
-                System.out.println("Invalid input. Incorrect date format")
+                System.out.println("Invalid input. Incorrect date format");
                 return "Failed";
 
             } 
