@@ -14,7 +14,7 @@ public class Person{
     private String lastName;
     private String address;
     private String birthdate;
-    private HashMap<String, Integer> demeritPoints; //
+    private HashMap<String, Integer> demeritPoints; 
     private boolean isSuspended;
 
     public Person(String personID, String firstName, String lastName, String address, String birthdate) {
@@ -203,51 +203,71 @@ public class Person{
 
     public String addDemeritPoints(){
 
-        FileWriter fileWriter = new FileWriter("addDemeritPoints.txt"); // creates a file for the demerit points.
-
         //Gets date and demerit points from the hashmap
-        String date = this.demeritPoints.getKey();
-        int demerit = this.demeritPoints.getValue();
+        Map.Entry<String, Integer> entry = this.demeritPoints.entrySet().iterator().next();
+        String date = entry.getKey();
+
+        // String date = this.demeritPoints.getKey();
+        int demerit = entry.getValue();
 
         //codition 1 -checking if offence date is valid
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate birthDate = LocalDate.parse(this.birthdate, formatter);
+        LocalDate offenceDate = LocalDate.parse(date, formatter);
         LocalDate today = LocalDate.now();
 
         //To get the person's age
-        int age = Period.between(this.birthdate, today).getYears();
+        //Converts this.birthday which is a string to localDate.
+        LocalDate birthDate = LocalDate.parse(this.birthdate, formatter);
+        int age = Period.between(birthDate, today).getYears();
 
         //need to read file to check if person had already lost some demerit points
-        FileReader fileReader = new FileReader("addDemeritPoints.txt");
+        BufferedReader fileReader = new BufferedReader(new FileReader ("addDemeritPoints.txt"));
         String line;
+        int existingDemerits = 0;
         while ((line = fileReader.readLine()) != null){
-            if(line.equals(this.personID)){
-                //
+            if(line.contains("PersonID: " + this.personID)){
+                while ((line = fileReader.readLine()) != null && !line.startsWith("PersonID: ")){
+                    if (line.contains("Demerits: ")){
+                        existingDemerits = Integer.parseInt(line.replaceAll("\\D+",""));
+                        break;
+                    }
+                }
             }
 
         }
+        fileReader.close();
+
+        int demeritSum= existingDemerits + demerit;
 
         // Make sure demerit points are whole numbers and between 1 -6 - Condition 2.
-        if ((demerit % 1 == 0) && (demerit > 0) && (demerit <= 6)){
-            if ((age < 21) && (demerit> 6)) { //Condition 3 
+        if ((demeritSum % 1 == 0) && (demeritSum > 0) && (demeritSum <= 6)){
+            if ((age < 21) && (demeritSum> 6)) { //Condition 3 
                 this.isSuspended = true;
             }
-            if ((age > 21) && (demerit > 12)){ 
+            if ((age > 21) && (demeritSum > 12)){ 
                     this.isSuspended = true;
                 }
             
-            fileWriter.write("\nName: ");
-            fileWriter.write("\nDate of Birth: " );
-            fileWriter.write("\nDate of Offence: ");
-            fileWriter.write("\nDemerits: ");
-            fileWriter.write("\nSuspended: True");
+            //writes into addDemeritPoints.txt
+            try {
+            FileWriter fileWriter = new FileWriter("addDemeritPoints.txt", true);
+            fileWriter.write("PersonID: " + personID);
+            fileWriter.write("\nName: " + firstName + " " + lastName);
+            fileWriter.write("\nDate of Birth: " + birthdate);
+            fileWriter.write("\nDate of Offence: " + offenceDate);
+            fileWriter.write("\nDemerits: " + demeritSum);
+            fileWriter.write("\nSuspended: " + (this.isSuspended ? "True" : "False"));
             fileWriter.close();
+            }
+            catch (IOException e){
+            System.out.println("An error occurred while writing to the file: " + e.getMessage());
+            }
 
-            return "Sucess";
+            return "Success";
         }
         else{
             System.out.println("Invalid input. Demerit Points must be a whole number");
-            return "failed";
+            return "Failed";
         }
 
     }

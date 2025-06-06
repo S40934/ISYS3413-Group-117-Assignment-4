@@ -10,40 +10,40 @@ class TestDemerits{
     void testAddDemerit_testCase1(){
     //TestCase 1: Checks if offence date is in correct format.
         Person testCase1 = new Demerit("56s_d%&fAB", "John", "Doe", "15-11-1990", "2025-06-01", 3);
-        assertTrue(tesCase1.addDemeritPoints());
+        assertEquals("Success",testCase1.addDemeritPoints()); // Expected outcome
     }
 
     //Test for Condition 2
     @Test
     void testAddDemerit_testCase2(){
-    //TestCase 2: Checks if demerit points is between 1 - 6
-    Person testCase2 = new Demerit("56s_d%&fAB", "John", "Doe", "15-11-1990", "01-06-2025", 7);
-        assertTrue(tesCase2.addDemeritPoints());
+    //TestCase 2: Checks if demerit points are whole numbers. 
+        Person testCase2 = new Demerit("56s_d%&fAB", "John", "Doe", "15-11-1990", "01-06-2005", 3.5);
+        assertEquals("Success", testCase2.addDemeritPoints());
+        
+    }
+
+    @Test
+    void testAddDemerit_testCase3(){
+    //TestCase 3: Checks if demerit points is between 1 - 6
+    Person testCase3 = new Demerit("56s_d%&fAB", "John", "Doe", "15-11-1990", "01-06-2025", 7);
+        assertEquals("Success", testCase3.addDemeritPoints());
         
     }
 
     //Test for Condition 3
-    //TestCase3, 4 and 1 checks if codition 3 is meet - if amount of demerit points of a person exceeds an amount in a time frame of 2 yrs
+    //TestCase4 and 5 checks if condition 3 is met - if amount of demerit points of a person exceeds an amount in a time frame of 2 yrs
     @Test
-    void testAddDemerit_testCase3(){
-    //TestCase 3: Checks if over demerit points for under 21.
-        Person testCase3 = new Demerit("56s_d%&fAB", "John", "Doe", "15-11-2005", "25-04-2024", 5);
-        assertTrue(tesCase3.addDemeritPoints());
+    void testAddDemerit_testCase4(){
+    //TestCase 4: Checks if over demerit points for under 21.
+        Person testCase4 = new Demerit("56s_d%&fAB", "John", "Doe", "15-11-2005", "25-04-2024", 5);
+        assertEquals("Success", testCase4.addDemeritPoints());
     }
 
     @Test
-    void testAddDemerit_testCase4(){
-    //TestCase 4: Checks if over demerit points for under 21 within 2 years.
-        Person testCase4 = new Demerit("56s_d%&fAB", "John", "Doe", "15-11-2005", "01-06-2025", 3);
-        assertTrue(tesCase4.addDemeritPoints());
-    }
-        
-    @Test
     void testAddDemerit_testCase5(){
-    //TestCase 5: Check funtion with birthday 
-    //check if it is format correctly
-        Person testCase5 = new Demerit("56s_d%&fAB", "John", "Doe", "15-11-1990", "01-06-2005", 5);
-        assertTrue(tesCase5.addDemeritPoints());
-        
+    //TestCase 5: Checks if over demerit points for under 21 within 2 years.
+        Person testCase5 = new Demerit("56s_d%&fAB", "John", "Doe", "15-11-2005", "01-06-2025", 3);
+        assertEquals("Success", testCase5.addDemeritPoints());
     }
+
 }
