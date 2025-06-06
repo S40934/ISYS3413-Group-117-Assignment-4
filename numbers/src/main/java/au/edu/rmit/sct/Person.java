@@ -258,14 +258,14 @@ public class Person{
                 if(line.contains("PersonID: " + this.personID)){
                     while ((line = fileReader.readLine()) != null && !line.startsWith("PersonID: ")){
                         if (line.contains("Demerits: ")){
-                            existingDemerits = Integer.parseInt(line.replaceAll("\\D+",""));
+                            existingDemerits = Float.parseFloat(line.replaceAll("[^0-9.]","")); // removes any symbols, excluding decimals
                             break;
                         }
                     }
                 }
-    
-                fileReader.close();
             }
+            fileReader.close();
+
         } catch (Exception e) {
         }
 
