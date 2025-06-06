@@ -65,7 +65,7 @@ public class PersonalDetailsEditor {
             Scanner myReader = new Scanner(myObj);
             myReader.nextLine(); myReader.next(); String personID = myReader.next(); // read personID line
             myReader.nextLine(); myReader.next(); String firstName = myReader.next(); String lastName = myReader.next(); // read name line
-            myReader.nextLine(); myReader.next(); String address = myReader.next(); // read address line
+            myReader.nextLine(); myReader.next(); String address = myReader.nextLine(); // read address line
             myReader.nextLine(); myReader.next(); myReader.next(); myReader.next();
             String birthdate = myReader.next(); // read birthdate line
 

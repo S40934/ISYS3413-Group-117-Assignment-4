@@ -22,7 +22,7 @@ public class PersonalDetailsEditor {
         
         // CONDITION 1: address change only on 18+ aged person
             // implement person date parsing and comparison to current date - 18 years using java.time LocalDateˇ
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate birthDate = LocalDate.parse(birthdate, formatter);
         LocalDate today = LocalDate.now();
         int age = Period.between(birthDate, today).getYears();

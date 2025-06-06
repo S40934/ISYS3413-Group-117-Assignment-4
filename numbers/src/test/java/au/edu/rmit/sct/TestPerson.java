@@ -70,16 +70,16 @@ class TestDemerits{
     //TestCase4 and 5 checks if condition 3 is met - if amount of demerit points of a person exceeds an amount in a time frame of 2 yrs
     @Test
     void testAddDemerit_testCase4(){
-    //TestCase 4: Checks if over demerit points for under 21.
+    //TestCase 4: Checks if over 6 demerit points for under 21.
         Person testCase4 = new Person("654321", "John", "Doe", "15-11-2005", "25-04-2024", 5.0f);
         assertEquals("Success", testCase4.addDemeritPoints());
     }
 
     @Test
     void testAddDemerit_testCase5(){
-    //TestCase 5: Checks if over demerit points for under 21 within 2 years.
-        Person testCase5 = new Person("654321", "John", "Doe", "15-11-2005", "01-06-2025", 3.0f);
-        assertEquals("Success", testCase5.addDemeritPoints());
+    //TestCase 5: Checks if over and over 12 for above 21 years old, within 2 years.
+        Person testCase5 = new Person("654321", "John", "Doe", "15-11-2000", "01-06-2025", 13.0f);
+        assertEquals("Failed", testCase5.addDemeritPoints());
     }
 
 }

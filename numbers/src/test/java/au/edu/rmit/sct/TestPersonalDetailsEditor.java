@@ -8,7 +8,7 @@ class TestPersonalDetailsEditor{
     @Test
     void testUpdatePersonalDetails_testCase1(){
         //TestCase 1: Check function with underaged person
-        PersonalDetailsEditor testVal = new PersonalDetailsEditor("testUnderagedPerson.txt");
+        PersonalDetailsEditor testVal = new PersonalDetailsEditor("pp.txt");
         testVal.updatePersonalDetails("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990");
         assertFalse(testVal.updatePersonalDetails("56s_d%&fB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990"));
     }
