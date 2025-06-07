@@ -13,3 +13,10 @@ numbers/target/test-classes/au/edu/rmit/sct/TestPerson
 numbers/target/test-classes/au/edu/rmit/sct/TestDemerits.class
 numbers/target/test-classes/au/edu/rmit/sct/TestPerson.class
 numbers/target/test-classes/au/edu/rmit/sct/TestPersonalDetailsEditor.class
+numbers/target/test-classes/editorIN/testBirthdayPerson.txt
+numbers/target/test-classes/editorIN/testBirthdayPerson.txt
+numbers/target/test-classes/editorIN/testFirstEvenPerson.txt
+numbers/target/test-classes/editorIN/testInvalidPerson.txt
+numbers/target/test-classes/editorIN/testOriginalPerson.txt
+numbers/target/test-classes/editorIN/testUnderagedPerson.txt
+numbers/target/test-classes/editorIN/testWrongEditsPerson.txt
