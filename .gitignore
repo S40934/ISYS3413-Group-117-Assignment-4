@@ -24,3 +24,4 @@ numbers/target/test-classes/editorIN/testInvalidPerson.txt
 numbers/target/test-classes/editorIN/testOriginalPerson.txt
 numbers/target/test-classes/editorIN/testUnderagedPerson.txt
 numbers/target/test-classes/editorIN/testWrongEditsPerson.txt
+numbers/target/classes/au/edu/rmit/sct/PersonalDetailsEditor.class
