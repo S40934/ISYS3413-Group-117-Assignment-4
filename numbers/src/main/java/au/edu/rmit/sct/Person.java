@@ -298,9 +298,13 @@ public class Person{
         }
 
         float demeritSum= existingDemerits + demerit;
-
+        
         // Make sure demerit points are whole numbers and between 1 -6 - Condition 2.
-        if ((demeritSum % 1 == 0) && (demeritSum >= 1.0f) && (demeritSum <= 6.0f)){
+        if(demirit > 6.0f){
+            return "Failed";
+
+        }
+        if ((demeritSum % 1 == 0) && (demeritSum >= 1.0f)){
             if ((age < 21) && (demeritSum > 6.0f)) { //Condition 3 
                 this.isSuspended = true;
             }
