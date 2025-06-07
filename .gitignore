@@ -1,5 +1,9 @@
+AddPerson.txt
+DemeritPoints.txt
 numbers/AddPerson.txt
 numbers/out2.txt
+numbers/AddDemeritPoints.txt
+numbers/src/test/java/au/edu/rmit/sct/TestPerson
 numbers/target/classes/au/edu/rmit/sct/Person.class
 numbers/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
 numbers/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
