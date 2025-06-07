@@ -163,16 +163,24 @@ public class Person{
             return false;
         }
         try {
-            FileWriter writer = new FileWriter("AddPerson.txt", false);
-            writer.write("*--------------------------*\n");
-            writer.write("PersonID: " + personID + "\n");
-            writer.write("PersonName: " + firstName + " " + lastName + "\n");
-            writer.write("Address: " + address + "\n");
-            writer.write("Date of Birth: " + birthdate + "\n");
-            writer.write("///--------/////--------///\n");
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred while writing to the file: " + e.getMessage());
+        LocalDate.of(year, month, day);
+        } catch (Exception e) {
+            System.out.println("Invalid date combination: " + e.getMessage());
+            return false;
+        }
+        if(valid){
+            try {
+                FileWriter writer = new FileWriter("AddPerson.txt", false);
+                writer.write("*--------------------------*\n");
+                writer.write("PersonID: " + personID + "\n");
+                writer.write("PersonName: " + firstName + " " + lastName + "\n");
+                writer.write("Address: " + address + "\n");
+                writer.write("Date of Birth: " + birthdate + "\n");
+                writer.write("///--------/////--------///\n");
+                writer.close();
+            } catch (IOException e) {
+                System.out.println("An error occurred while writing to the file: " + e.getMessage());
+            }
         }
         return valid;
     }

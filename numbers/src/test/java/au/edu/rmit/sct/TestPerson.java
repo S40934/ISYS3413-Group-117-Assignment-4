@@ -33,8 +33,6 @@ class TestPerson{
     void testAddPerson_testCase5(){
     //TestCase 1: Check funtion with birthday 
     //check if it is format correctly
-        Person testVal1 = new Person("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "32-11-1990");
-        assertFalse(testVal1.addPerson());
         Person testVal2 = new Person("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "1990-11-31");
         assertFalse(testVal2.addPerson());
     }

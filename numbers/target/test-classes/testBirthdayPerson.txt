@@ -1,6 +1,0 @@
-*--------------------------*
-PersonID: 56s_d%&fAB
-PersonName: John Doe
-Address: 21|Lowland Street|Melbourne|Victoria|Australia
-Date of Birth: 15-11-2000
-///--------/////--------///
