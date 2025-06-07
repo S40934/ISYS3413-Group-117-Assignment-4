@@ -23,29 +23,15 @@ public class PersonalDetailsEditor {
 
     public boolean updatePersonalDetails(String personID, String firstName, String lastName, String address, String birthdate){
         boolean result = true; // assume success by default
-
-        // System.out.println("READING PERSON FILE");
-        // System.out.println(filename);
-        // System.out.println("THIS PERSON IS");
-        // System.out.println(age);
-        // System.out.println("YEARS OLD");
-        // System.out.println("AND IS");
-        // System.out.println(this.person.getFirstName());
-        // System.out.println(this.person.getLastName());
-        // System.out.println(this.person.getAddress());
-        // System.out.println(this.person.getBirthdate());
         
         //CONDITION 2: no other change on birthday change (single detail change)
         // check if different birthday param, write and return early if so
         // structured first as it takes precedence
-        // System.out.println(birthdate);
-        // System.out.println(this.person.getBirthdate());
         if (! (this.person.getBirthdate().equals(birthdate)) ){
             this.person.setBirthdate(birthdate);
 
-            if (!this.person.addPerson()){   System.out.println("INVALID NEW DETAILS, NO CHANGES MADE TO FILE"); } // check if invalid birthday
+            if (!this.person.addPerson()){} // check if invalid birthday
             else {  this.person.writeToFile(filename);    } // write to file if valid
-            System.out.println("~FAILED C2~");
             return false; // condition 2 failed
         }
         
@@ -55,10 +41,8 @@ public class PersonalDetailsEditor {
         LocalDate birthDateToComp = LocalDate.parse(this.person.getBirthdate(), formatter);
         LocalDate today = LocalDate.now();
         int age = Period.between(birthDateToComp, today).getYears();
-        // System.out.println("this person is");
-        // System.out.println(age);
         if (age >= 18) {    this.person.setAddress(address);   }
-        else {  result = false; System.out.println("~FAILED C1~");}
+        else {  result = false;}
        
 
         this.person.setFirstName(firstName);
@@ -67,30 +51,21 @@ public class PersonalDetailsEditor {
         //CONDITION 3: if 1st char of ID is even, ID cannot be canged
             // check first char of ID, if even, skip ID change
             // return new number to indicate status
-
         String newID = personID;
-
         String firstStringID = String.valueOf(this.person.getPersonID().charAt(0));
         if (isInteger(firstStringID) && Integer.parseInt(firstStringID) % 2 == 0){ // checking if first char is even integer
             newID = this.person.getPersonID(); // keep same ID if even first number
-            System.out.println("~FAILED C3~");    
             result = false;
         }
-
         this.person.setPersonID(newID); // change ID based on condition
 
-            // change ID if not even first char\
-        // this.person.addPerson();
-        if (!this.person.addPerson()){
-            System.out.println("INVALID NEW DETAILS, NO CHANGES MADE TO FILE");
-            return false; //  invalid new details
+        if (this.person.addPerson()){
+            this.person.writeToFile(filename); // only write if valid new details (checked with addPerson() function)
+        }
+        else {
+            result = false; // addPerson() failed
         }
 
-        // this.person.writeToFile(filename);
-        if (!result){
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FAILED~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        }
-        else {System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~SUCCESS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");}
         return result;
     }
 
@@ -102,8 +77,6 @@ public class PersonalDetailsEditor {
             Scanner myReader = new Scanner(myObj);
             myReader.nextLine();
             myReader.next(); String personID = myReader.next(); myReader.nextLine(); // read personID line
-            // System.out.println("---------------------------I HAVE READ THE ID------------------");
-            // System.out.println(personID);
             myReader.next(); String firstName = myReader.next(); String lastName = myReader.next(); // read name line
             myReader.next(); String address = myReader.nextLine(); address = address.substring(1); // read address line
             myReader.next(); myReader.next(); myReader.next(); String birthdate = myReader.next(); myReader.nextLine(); // read birthdate line
@@ -118,7 +91,7 @@ public class PersonalDetailsEditor {
         return person;
     }
 
-    public boolean isInteger (String str) {
+    public boolean isInteger (String str) { // basic integer checker for condition 3
         try {
             Integer.parseInt(str);
             return true;
