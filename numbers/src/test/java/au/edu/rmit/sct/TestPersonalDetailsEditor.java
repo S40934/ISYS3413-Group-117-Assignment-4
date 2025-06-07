@@ -11,8 +11,7 @@ class TestPersonalDetailsEditor{
         PersonalDetailsEditor testVal = new PersonalDetailsEditor(String.valueOf(getClass().getClassLoader().getResource("editorIN/testUnderagedPerson.txt")).substring(6));
         testVal.setFilename("out1.txt");
         System.out.println("Test case 1: Check function with underaged person");
-        // testVal.updatePersonalDetails("56s_d%&NNN", "Different", "Person", "21|Lowsea Avenue|Newcastle|Orlando|Florida", "15-11-1990");
-        assertFalse(testVal.updatePersonalDetails("56s_d%&fB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-2010"));
+        assertFalse(testVal.updatePersonalDetails("56s_d%&NNN", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-2010"));
     }
     @Test
     void testUpdatePersonalDetails_testCase2(){
@@ -20,9 +19,7 @@ class TestPersonalDetailsEditor{
         PersonalDetailsEditor testVal = new PersonalDetailsEditor(String.valueOf(getClass().getClassLoader().getResource("editorIN/testBirthdayPerson.txt")).substring(6));
         System.out.println("Test case 2: Check function with birthday change");
         testVal.setFilename("out2.txt");
-        // testVal.setFilename(String.valueOf(getClass().getClassLoader().getResource("editorOUT/outBirthdayPerson.txt")).substring(0));
-        // testVal.updatePersonalDetails("56s_d%&fB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990");
-        assertFalse(testVal.updatePersonalDetails("56s_d%&fB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990"));
+        assertFalse(testVal.updatePersonalDetails("56s_d%&NNN", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990"));
     }
     @Test
     void testUpdatePersonalDetails_testCase3(){
@@ -32,7 +29,7 @@ class TestPersonalDetailsEditor{
         testVal.setFilename("out3.txt");
         // testVal.setFilename(String.valueOf(getClass().getClassLoader().getResource("editorOUT/outFirstEvenPerson.txt")).substring(0));
         // testVal.updatePersonalDetails("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990");
-        assertFalse(testVal.updatePersonalDetails("56s_d%&fB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990"));
+        assertFalse(testVal.updatePersonalDetails("56s_d%&NNN", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990"));
     }
     @Test
     void testUpdatePersonalDetails_testCase4(){
@@ -42,7 +39,7 @@ class TestPersonalDetailsEditor{
         testVal.setFilename("out4.txt");
         // testVal.setFilename(String.valueOf(getClass().getClassLoader().getResource("editorOUT/outInvalidPerson.txt")).substring(0));
         // testVal.updatePersonalDetails("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|USA", "15-11-1990");
-        assertTrue(testVal.updatePersonalDetails("56s_d%&fB", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990"));
+        assertTrue(testVal.updatePersonalDetails("56s_d%&NNN", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990"));
     }
     @Test
     void testUpdatePersonalDetails_testCase5(){
@@ -51,8 +48,6 @@ class TestPersonalDetailsEditor{
         PersonalDetailsEditor testVal= new PersonalDetailsEditor(String.valueOf(getClass().getClassLoader().getResource("editorIN/testWrongEditsPerson.txt")).substring(6));
         System.out.println("Test case 5: Check function with invalid detail edits / function parameters");
         testVal.setFilename("out5.txt");
-        // testVal.setFilename(String.valueOf(getClass().getClassLoader().getResource("editorOUT/outWrongEditsPerson.txt")).substring(0));
-        // testVal.updatePersonalDetails("ssssssssss", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990");
         assertFalse(testVal.updatePersonalDetails("ssssssssss", "John", "Doe", "32|Highland Street|Melbourne|Victoria|Australia", "15-11-1990"));
 
     }

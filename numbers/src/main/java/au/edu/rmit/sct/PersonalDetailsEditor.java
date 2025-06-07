@@ -38,13 +38,14 @@ public class PersonalDetailsEditor {
         //CONDITION 2: no other change on birthday change (single detail change)
         // check if different birthday param, write and return early if so
         // structured first as it takes precedence
-        System.out.println(birthdate);
-        System.out.println(this.person.getBirthdate());
+        // System.out.println(birthdate);
+        // System.out.println(this.person.getBirthdate());
         if (! (this.person.getBirthdate().equals(birthdate)) ){
             this.person.setBirthdate(birthdate);
 
-            if (this.person.addPerson()){   System.out.println("INVALID NEW DETAILS, NO CHANGES MADE TO FILE"); } // check if invalid birthday
+            if (!this.person.addPerson()){   System.out.println("INVALID NEW DETAILS, NO CHANGES MADE TO FILE"); } // check if invalid birthday
             else {  this.person.writeToFile(filename);    } // write to file if valid
+            System.out.println("~FAILED C2~");
             return false; // condition 2 failed
         }
         
@@ -54,10 +55,10 @@ public class PersonalDetailsEditor {
         LocalDate birthDateToComp = LocalDate.parse(this.person.getBirthdate(), formatter);
         LocalDate today = LocalDate.now();
         int age = Period.between(birthDateToComp, today).getYears();
-        System.out.println("this person is");
-        System.out.println(age);
+        // System.out.println("this person is");
+        // System.out.println(age);
         if (age >= 18) {    this.person.setAddress(address);   }
-        else {  result = false; }
+        else {  result = false; System.out.println("~FAILED C1~");}
        
 
         this.person.setFirstName(firstName);
@@ -72,15 +73,15 @@ public class PersonalDetailsEditor {
         String firstStringID = String.valueOf(this.person.getPersonID().charAt(0));
         if (isInteger(firstStringID) && Integer.parseInt(firstStringID) % 2 == 0){ // checking if first char is even integer
             newID = this.person.getPersonID(); // keep same ID if even first number
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FAILED C3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");    
+            System.out.println("~FAILED C3~");    
             result = false;
         }
 
         this.person.setPersonID(newID); // change ID based on condition
 
             // change ID if not even first char\
-        this.person.addPerson();
-        if (this.person.addPerson()){
+        // this.person.addPerson();
+        if (!this.person.addPerson()){
             System.out.println("INVALID NEW DETAILS, NO CHANGES MADE TO FILE");
             return false; //  invalid new details
         }
