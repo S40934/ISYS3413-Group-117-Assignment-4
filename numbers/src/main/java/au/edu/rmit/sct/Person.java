@@ -83,16 +83,27 @@ public class Person{
         int liner = 0;
         for(int i = 0; i < address.length() ;i++){
             if(address.charAt(i)=='|'){
-                
                 variant = address.substring(liner , i);
                 liner = i+1;
                 if(count == 4){
                     number = variant;
+                    if (!number.matches("\\d+")) {
+                        valid = false;
+                        System.out.println(" number contain digit only");
+                    }
                 }else if (count == 3){
+                    //making sure street only have letters
                     street = variant;
+                    if (!street.matches("[a-zA-Z ]+")) {
+                        valid = false;
+                    }
 
                 }else if(count == 2){
+                    //making sure city only have letters
                     city = variant;
+                    if (!city.matches("[a-zA-Z ]+")) {
+                        valid = false;
+                    }
                                         
 
                 }else if (count == 1){
@@ -118,6 +129,7 @@ public class Person{
             System.out.println("Please make sure, it is in Australia");
         }
         //Condition 3
+        //Check format first of birthdate
         int day = 0; 
         int month = 0;
         int year = 0;
@@ -162,12 +174,15 @@ public class Person{
             System.out.println("Invalid day: " + day);
             return false;
         }
+        //check if that day is valid like not leap day or such
         try {
         LocalDate.of(year, month, day);
         } catch (Exception e) {
             System.out.println("Invalid date combination: " + e.getMessage());
             return false;
         }
+
+        //Only run the code when it valid is true(if everything correct)
         if(valid){
             try {
                 FileWriter writer = new FileWriter("AddPerson.txt", false);
