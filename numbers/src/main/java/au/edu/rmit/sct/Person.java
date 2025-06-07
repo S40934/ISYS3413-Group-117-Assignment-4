@@ -300,7 +300,7 @@ public class Person{
         float demeritSum= existingDemerits + demerit;
         
         // Make sure demerit points are whole numbers and between 1 -6 - Condition 2.
-        if(demirit > 6.0f){
+        if(demerit > 6.0f){
             return "Failed";
 
         }
