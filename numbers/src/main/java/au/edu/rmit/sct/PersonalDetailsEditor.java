@@ -22,63 +22,75 @@ public class PersonalDetailsEditor {
     }
 
     public boolean updatePersonalDetails(String personID, String firstName, String lastName, String address, String birthdate){
-        boolean success = true; boolean failed = false;
+        boolean result = true; // assume success by default
+
+        // System.out.println("READING PERSON FILE");
+        // System.out.println(filename);
+        // System.out.println("THIS PERSON IS");
+        // System.out.println(age);
+        // System.out.println("YEARS OLD");
+        // System.out.println("AND IS");
+        // System.out.println(this.person.getFirstName());
+        // System.out.println(this.person.getLastName());
+        // System.out.println(this.person.getAddress());
+        // System.out.println(this.person.getBirthdate());
+        
+        //CONDITION 2: no other change on birthday change (single detail change)
+        // check if different birthday param, write and return early if so
+        // structured first as it takes precedence
+        System.out.println(birthdate);
+        System.out.println(this.person.getBirthdate());
+        if (! (this.person.getBirthdate().equals(birthdate)) ){
+            this.person.setBirthdate(birthdate);
+
+            if (this.person.addPerson()){   System.out.println("INVALID NEW DETAILS, NO CHANGES MADE TO FILE"); } // check if invalid birthday
+            else {  this.person.writeToFile(filename);    } // write to file if valid
+            return false; // condition 2 failed
+        }
         
         // CONDITION 1: address change only on 18+ aged person
-            // implement person date parsing and comparison to current date - 18 years using java.time LocalDateˇ
+        // implement person date parsing and comparison to current date - 18 years using java.time LocalDateˇ
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate birthDateToComp = LocalDate.parse(this.person.getBirthdate(), formatter);
         LocalDate today = LocalDate.now();
         int age = Period.between(birthDateToComp, today).getYears();
-        System.out.println("READING PERSON FILE");
-        System.out.println(filename);
-        System.out.println("THIS PERSON IS");
+        System.out.println("this person is");
         System.out.println(age);
-        System.out.println("YEARS OLD");
-        System.out.println("AND IS");
-        System.out.println(this.person.getFirstName());
-        System.out.println(this.person.getLastName());
-        System.out.println(this.person.getAddress());
-        System.out.println(this.person.getBirthdate());
+        if (age >= 18) {    this.person.setAddress(address);   }
+        else {  result = false; }
+       
 
-        if (age > 18) {
-            this.person.setAddress(address);
-            System.out.println("THIS IS SUPPOSED TO FAIL\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
-        }
-        else {
-            success = false;
-            // condition 1 failed
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FAILED C1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        }
-
-        //CONDITION 2: no other change on birthday change (single detail change)
-            // check if different birthday param, write and return early if so
-        if (!this.person.getBirthdate().equals(birthdate)){
-            this.person.setBirthdate(birthdate);
-            this.person.writeToFile(filename);
-
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FAILED C2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            return failed; // condition 2 failed
-        }
+        this.person.setFirstName(firstName);
+        this.person.setLastName(lastName);
         
         //CONDITION 3: if 1st char of ID is even, ID cannot be canged
             // check first char of ID, if even, skip ID change
             // return new number to indicate status
-        this.person.setFirstName(firstName);
-        this.person.setLastName(lastName);
-        
-        if (Integer.parseInt(String.valueOf(this.person.getPersonID().charAt(0))) % 2 == 0){ // checking if first char is even integer
-            this.person.writeToFile(filename);
-            
+
+        String newID = personID;
+
+        String firstStringID = String.valueOf(this.person.getPersonID().charAt(0));
+        if (isInteger(firstStringID) && Integer.parseInt(firstStringID) % 2 == 0){ // checking if first char is even integer
+            newID = this.person.getPersonID(); // keep same ID if even first number
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FAILED C3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");    
-            return failed; // condition 3 failed
+            result = false;
         }
-        this.person.setPersonID(personID);
-            // change ID if not even first char
+
+        this.person.setPersonID(newID); // change ID based on condition
+
+            // change ID if not even first char\
+        this.person.addPerson();
         if (this.person.addPerson()){
-            return failed; //  invalid new details
+            System.out.println("INVALID NEW DETAILS, NO CHANGES MADE TO FILE");
+            return false; //  invalid new details
         }
-        return success;
+
+        // this.person.writeToFile(filename);
+        if (!result){
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FAILED~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        }
+        else {System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~SUCCESS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");}
+        return result;
     }
 
     private Person readPersonFile(String filename){
@@ -103,5 +115,14 @@ public class PersonalDetailsEditor {
         }
 
         return person;
+    }
+
+    public boolean isInteger (String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }
