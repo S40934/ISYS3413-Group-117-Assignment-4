@@ -1,0 +1,15 @@
+numbers/AddPerson.txt
+numbers/out2.txt
+numbers/target/classes/au/edu/rmit/sct/Person.class
+numbers/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+numbers/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+numbers/target/surefire-reports/au.edu.rmit.sct.TestDemerits.txt
+numbers/target/surefire-reports/au.edu.rmit.sct.TestPerson.txt
+numbers/target/surefire-reports/au.edu.rmit.sct.TestPersonalDetailsEditor.txt
+numbers/target/surefire-reports/TEST-au.edu.rmit.sct.TestPerson.xml
+numbers/target/surefire-reports/TEST-au.edu.rmit.sct.TestPersonalDetailsEditor.xml
+numbers/target/surefire-reports/TEST-au.edu.rmit.sct.TestDemerits.xml
+numbers/target/test-classes/au/edu/rmit/sct/TestPerson
+numbers/target/test-classes/au/edu/rmit/sct/TestDemerits.class
+numbers/target/test-classes/au/edu/rmit/sct/TestPerson.class
+numbers/target/test-classes/au/edu/rmit/sct/TestPersonalDetailsEditor.class
