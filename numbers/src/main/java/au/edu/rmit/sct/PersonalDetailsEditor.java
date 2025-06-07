@@ -48,6 +48,7 @@ public class PersonalDetailsEditor {
         else {
             success = false;
             // condition 1 failed
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FAILED C1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
 
         //CONDITION 2: no other change on birthday change (single detail change)
@@ -55,6 +56,8 @@ public class PersonalDetailsEditor {
         if (!this.person.getBirthdate().equals(birthdate)){
             this.person.setBirthdate(birthdate);
             this.person.writeToFile(filename);
+
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FAILED C2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             return failed; // condition 2 failed
         }
         
@@ -66,6 +69,8 @@ public class PersonalDetailsEditor {
         
         if (Integer.parseInt(String.valueOf(this.person.getPersonID().charAt(0))) % 2 == 0){ // checking if first char is even integer
             this.person.writeToFile(filename);
+            
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FAILED C3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");    
             return failed; // condition 3 failed
         }
         this.person.setPersonID(personID);
