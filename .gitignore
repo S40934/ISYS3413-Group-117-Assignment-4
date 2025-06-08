@@ -32,3 +32,5 @@ numbers/target/maven-status/maven-compiler-plugin/testCompile/default-testCompil
 numbers/out3.txt
 numbers/out4.txt
 numbers/target/classes/au/edu/rmit/sct/LocalRun.class
+numbers/target/classes/au/edu/rmit/sct/Main.class
+AddDemeritPoints.txt
