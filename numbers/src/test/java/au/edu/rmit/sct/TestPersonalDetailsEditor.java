@@ -22,7 +22,7 @@ class TestPersonalDetailsEditor{
     @Test
     void testUpdatePersonalDetails_testCase2(){
         //TestCase 2: Check function with birthday change
-        String fname = "editorIN/testBirthdayChange.txt";
+        String fname = "editorIN/testBirthdayPerson.txt";
         PersonalDetailsEditor testVal;
         if (!new File(fname).exists()) {
             fname = String.valueOf(getClass().getClassLoader().getResource(fname)).substring(6);
