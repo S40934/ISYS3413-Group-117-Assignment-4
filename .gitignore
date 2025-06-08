@@ -25,3 +25,9 @@ numbers/target/test-classes/editorIN/testOriginalPerson.txt
 numbers/target/test-classes/editorIN/testUnderagedPerson.txt
 numbers/target/test-classes/editorIN/testWrongEditsPerson.txt
 numbers/target/classes/au/edu/rmit/sct/PersonalDetailsEditor.class
+numbers/out1.txt
+.gitignore
+numbers/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+numbers/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+numbers/out3.txt
+numbers/out4.txt
